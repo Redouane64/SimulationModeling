@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Redhouane Sobaihi</Authors>
+    <RootNamespace>GrowingVegetables</RootNamespace>
+    <Product>Growing Vegetables Simulation</Product>
   </PropertyGroup>
 
   <ItemGroup>
