@@ -13,22 +13,30 @@ namespace GrowingVegetables.Window
     public partial class MainForm : Form
     {
 
-        private readonly Dictionary<CheckBox, Cell> farm = new Dictionary<CheckBox, Cell>();
+        private readonly Dictionary<CheckBox, Cell> items = new Dictionary<CheckBox, Cell>();
 
         public MainForm()
         {
             InitializeComponent();
 
             // Attch click handler to CheckBox controls
-            var checkBoxes = FourByFourFarm.Controls.OfType<CheckBox>().ToArray();
+            var checkBoxes = Container.Panel2.Controls.OfType<CheckBox>().ToArray();
             foreach (var checkbox in checkBoxes)
             {
                 checkbox.Click += new EventHandler(CheckBox_Clicked);
                 checkbox.BackColor = Color.White;
 
-                farm.Add(checkbox, new Cell());
+                items.Add(checkbox, new Cell());
             }
 
+            // Register handlers to current game status
+            Game.Current.OnMoneyValueChanged += new EventHandler<int>(OnGameMoneyValueChanged);
+            moneyTextBox.Text = Game.Current.Money.ToString();
+        }
+
+        private void OnGameMoneyValueChanged(object sender, int money)
+        {
+            moneyTextBox.Text = money.ToString();
         }
 
         private void Exit(object sender, EventArgs e)
@@ -39,7 +47,7 @@ namespace GrowingVegetables.Window
         private void CheckBox_Clicked(object sender, EventArgs e)
         {
             var clickedCheckBox = sender as CheckBox;
-            var cell = farm[clickedCheckBox];
+            var cell = items[clickedCheckBox];
             
             if(cell.Status == CellStatus.Empty)
             {
@@ -50,12 +58,23 @@ namespace GrowingVegetables.Window
                 cell.Harvest();
             }
 
-            clickedCheckBox.BackColor = cell.GetColor();
+            clickedCheckBox.BackColor = cell.GetStatusColor();
         }
 
         private void Time_Tick(object sender, EventArgs e)
         {
+            foreach (var item in items)
+            {
+                var (checkbox, cell) = (item.Key, item.Value);
 
+                if(cell.Status == CellStatus.Empty || cell.Status == CellStatus.Overgrown)
+                {
+                    continue;
+                }
+
+                cell.Grow();
+                checkbox.BackColor = cell.GetStatusColor();
+            }
         }
 
     }
