@@ -14,6 +14,7 @@ namespace GrowingVegetables.Window
     {
 
         private readonly Dictionary<CheckBox, Cell> items = new Dictionary<CheckBox, Cell>();
+        private readonly Game game;
 
         public MainForm()
         {
@@ -29,9 +30,14 @@ namespace GrowingVegetables.Window
                 items.Add(checkbox, new Cell());
             }
 
-            // Register handlers to current game status
-            Game.Current.OnMoneyValueChanged += new EventHandler<int>(OnGameMoneyValueChanged);
-            moneyTextBox.Text = Game.Current.Money.ToString();
+            // Initialize the game.
+            game = new Game();
+
+            // Register handlers to current game status.
+            game.OnMoneyValueChanged += new EventHandler<int>(OnGameMoneyValueChanged);
+
+            // Update money textbox with the starting amount.
+            moneyTextBox.Text = game.Money.ToString();
         }
 
         private void OnGameMoneyValueChanged(object sender, int money)

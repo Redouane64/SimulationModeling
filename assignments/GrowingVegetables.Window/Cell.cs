@@ -19,29 +19,11 @@ namespace GrowingVegetables.Window
 
     internal class Game
     {
-        // Factory to create game/simulation instance.
-        public static Game Create() => new Game();
-
-        // Global reference to the currently running game/simulation instance.
-        private static readonly object _root = new object();
-        private static Game current = null;
-        public static Game Current
+        // a global reference to currently running game.
+        public static Game Current 
         {
-            get
-            {
-                lock(_root)
-                {
-                    if(current == null)
-                    {
-                        lock (_root)
-                        {
-                            current = Create();
-                        }
-                    }
-                }
-
-                return current;
-            }
+            get;
+            set;
         }
 
         public int Money { get; private set; }
@@ -51,6 +33,9 @@ namespace GrowingVegetables.Window
         {
             // Game starting money
             Money = 10;
+
+            // Set current instance as Global instance.
+            Current = this;
         }
 
         public bool TakePlantMoney()
@@ -128,6 +113,7 @@ namespace GrowingVegetables.Window
             {
                 case CellStatus.Growing:
                 case CellStatus.PlantingShoots:
+                    break; // No gain if plants harvested at these status.
                 case CellStatus.Immature:
                     Game.Current.AddMoney(3);
                     break;
