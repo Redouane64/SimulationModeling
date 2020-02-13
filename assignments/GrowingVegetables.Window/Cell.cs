@@ -53,8 +53,31 @@ namespace GrowingVegetables.Window
             Money = 10;
         }
 
+        public bool TakePlantMoney()
+        {
+            if (Money < 2)
+            {
+                return false;
+            }
+
+            Money -= 2;
+
+            // Invoke OnMoneyValueChanged event to notify subscribers (e.g: UI) to update money text value.
+            OnMoneyValueChanged?.Invoke(this, this.Money);
+            return true;
+        }
+
         public bool TakeMoney(int amount)
         {
+            if (Money <= 0)
+            {
+                return false;
+            }
+
+            if (amount > Money)
+            {
+                return false;
+            }
 
             Money -= amount;
 
@@ -81,10 +104,16 @@ namespace GrowingVegetables.Window
 
         public CellStatus Status { get; private set; }
 
-        public void Plant()
+        public bool Plant()
         {
-            Game.Current.TakeMoney(2);
+            if(!Game.Current.TakePlantMoney())
+            {
+                // There is not enought money to plant.
+                return false;
+            }
+
             Status = CellStatus.Growing;
+            return true;
         }
 
         public void Grow()

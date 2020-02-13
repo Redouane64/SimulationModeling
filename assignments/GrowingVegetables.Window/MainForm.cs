@@ -51,7 +51,11 @@ namespace GrowingVegetables.Window
             
             if(cell.Status == CellStatus.Empty)
             {
-                cell.Plant();
+                if(!cell.Plant())
+                {
+                    clickedCheckBox.Checked = false;
+                    return;
+                }
             }
             else
             {
