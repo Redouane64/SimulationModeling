@@ -52,11 +52,15 @@
             this.moneyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.time = new System.Windows.Forms.Timer(this.components);
+            this.speedTrackBar = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.currentSpeedLabel = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Container)).BeginInit();
             this.Container.Panel1.SuspendLayout();
             this.Container.Panel2.SuspendLayout();
             this.Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -271,6 +275,9 @@
             // 
             // Container.Panel1
             // 
+            this.Container.Panel1.Controls.Add(this.currentSpeedLabel);
+            this.Container.Panel1.Controls.Add(this.label2);
+            this.Container.Panel1.Controls.Add(this.speedTrackBar);
             this.Container.Panel1.Controls.Add(this.moneyTextBox);
             this.Container.Panel1.Controls.Add(this.label1);
             // 
@@ -320,6 +327,34 @@
             this.time.Interval = 2000;
             this.time.Tick += new System.EventHandler(this.Time_Tick);
             // 
+            // speedTrackBar
+            // 
+            this.speedTrackBar.Location = new System.Drawing.Point(223, 18);
+            this.speedTrackBar.Minimum = 1;
+            this.speedTrackBar.Name = "speedTrackBar";
+            this.speedTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.speedTrackBar.TabIndex = 2;
+            this.speedTrackBar.Value = 1;
+            this.speedTrackBar.ValueChanged += new System.EventHandler(this.SpeedTrackBar_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(179, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Speed";
+            // 
+            // currentSpeedLabel
+            // 
+            this.currentSpeedLabel.AutoSize = true;
+            this.currentSpeedLabel.Location = new System.Drawing.Point(242, 50);
+            this.currentSpeedLabel.Name = "currentSpeedLabel";
+            this.currentSpeedLabel.Size = new System.Drawing.Size(60, 13);
+            this.currentSpeedLabel.TabIndex = 4;
+            this.currentSpeedLabel.Text = "<<speed>>";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +374,7 @@
             this.Container.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Container)).EndInit();
             this.Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.speedTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,6 +405,9 @@
         private System.Windows.Forms.Timer time;
         private System.Windows.Forms.TextBox moneyTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar speedTrackBar;
+        private System.Windows.Forms.Label currentSpeedLabel;
     }
 }
 

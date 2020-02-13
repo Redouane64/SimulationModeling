@@ -87,5 +87,11 @@ namespace GrowingVegetables.Window
             }
         }
 
+        private void SpeedTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            var calculatedSpeed = speedTrackBar.Value * 1000;
+            time.Interval = calculatedSpeed;
+            currentSpeedLabel.Text = $"{calculatedSpeed} ms.";
+        }
     }
 }
