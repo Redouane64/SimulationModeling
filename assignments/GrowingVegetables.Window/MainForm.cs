@@ -38,6 +38,8 @@ namespace GrowingVegetables.Window
 
             // Update money textbox with the starting amount.
             moneyTextBox.Text = game.Money.ToString();
+
+            SpeedTrackBar_ValueChanged(this, EventArgs.Empty);
         }
 
         private void OnGameMoneyValueChanged(object sender, int money)
@@ -89,7 +91,7 @@ namespace GrowingVegetables.Window
 
         private void SpeedTrackBar_ValueChanged(object sender, EventArgs e)
         {
-            var calculatedSpeed = speedTrackBar.Value * 1000;
+            var calculatedSpeed = speedTrackBar.Value;
             time.Interval = calculatedSpeed;
             currentSpeedLabel.Text = $"{calculatedSpeed} ms.";
         }

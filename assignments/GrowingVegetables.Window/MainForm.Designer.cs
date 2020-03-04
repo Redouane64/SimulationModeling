@@ -49,12 +49,12 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.Container = new System.Windows.Forms.SplitContainer();
+            this.currentSpeedLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.speedTrackBar = new System.Windows.Forms.TrackBar();
             this.moneyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.time = new System.Windows.Forms.Timer(this.components);
-            this.speedTrackBar = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.currentSpeedLabel = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Container)).BeginInit();
             this.Container.Panel1.SuspendLayout();
@@ -304,6 +304,37 @@
             this.Container.SplitterWidth = 1;
             this.Container.TabIndex = 4;
             // 
+            // currentSpeedLabel
+            // 
+            this.currentSpeedLabel.AutoSize = true;
+            this.currentSpeedLabel.Location = new System.Drawing.Point(242, 50);
+            this.currentSpeedLabel.Name = "currentSpeedLabel";
+            this.currentSpeedLabel.Size = new System.Drawing.Size(60, 13);
+            this.currentSpeedLabel.TabIndex = 4;
+            this.currentSpeedLabel.Text = "<<speed>>";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(179, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Speed";
+            // 
+            // speedTrackBar
+            // 
+            this.speedTrackBar.Location = new System.Drawing.Point(223, 18);
+            this.speedTrackBar.Maximum = 2000;
+            this.speedTrackBar.Minimum = 50;
+            this.speedTrackBar.Name = "speedTrackBar";
+            this.speedTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.speedTrackBar.SmallChange = 50;
+            this.speedTrackBar.TabIndex = 2;
+            this.speedTrackBar.TickFrequency = 50;
+            this.speedTrackBar.Value = 100;
+            this.speedTrackBar.ValueChanged += new System.EventHandler(this.SpeedTrackBar_ValueChanged);
+            // 
             // moneyTextBox
             // 
             this.moneyTextBox.Location = new System.Drawing.Point(52, 28);
@@ -324,36 +355,7 @@
             // time
             // 
             this.time.Enabled = true;
-            this.time.Interval = 2000;
             this.time.Tick += new System.EventHandler(this.Time_Tick);
-            // 
-            // speedTrackBar
-            // 
-            this.speedTrackBar.Location = new System.Drawing.Point(223, 18);
-            this.speedTrackBar.Minimum = 1;
-            this.speedTrackBar.Name = "speedTrackBar";
-            this.speedTrackBar.Size = new System.Drawing.Size(104, 45);
-            this.speedTrackBar.TabIndex = 2;
-            this.speedTrackBar.Value = 1;
-            this.speedTrackBar.ValueChanged += new System.EventHandler(this.SpeedTrackBar_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(179, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Speed";
-            // 
-            // currentSpeedLabel
-            // 
-            this.currentSpeedLabel.AutoSize = true;
-            this.currentSpeedLabel.Location = new System.Drawing.Point(242, 50);
-            this.currentSpeedLabel.Name = "currentSpeedLabel";
-            this.currentSpeedLabel.Size = new System.Drawing.Size(60, 13);
-            this.currentSpeedLabel.TabIndex = 4;
-            this.currentSpeedLabel.Text = "<<speed>>";
             // 
             // MainForm
             // 

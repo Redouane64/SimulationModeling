@@ -10,8 +10,8 @@ namespace GrowingVegetables.Window
     internal enum CellStatus
     {
         Empty,
-        Growing,
-        PlantingShoots,
+        Planted,
+        Green,
         Immature,
         Mature,
         Overgrown
@@ -82,6 +82,13 @@ namespace GrowingVegetables.Window
 
     internal class Cell
     {
+        private int progress = 0;
+
+        private const int prPlanted = 20;
+        private const int prGreen = 100;
+        private const int prImmature = 120;
+        private const int prMature = 140;
+
         public Cell()
         {
             Status = CellStatus.Empty;
@@ -97,13 +104,24 @@ namespace GrowingVegetables.Window
                 return false;
             }
 
-            Status = CellStatus.Growing;
+            Status = CellStatus.Planted;
+            progress++;
+
             return true;
         }
 
         public void Grow()
         {
-            Status++;
+            if ((Status != CellStatus.Empty) && (Status != CellStatus.Overgrown))
+            {
+                progress++;
+                if (progress < prPlanted) Status = CellStatus.Planted;
+                else if (progress < prGreen) Status = CellStatus.Green;
+                else if (progress < prImmature) Status = CellStatus.Immature;
+                else if (progress < prMature) Status = CellStatus.Mature;
+                else Status = CellStatus.Overgrown;
+            }
+
         }
 
         public void Harvest()
@@ -111,8 +129,8 @@ namespace GrowingVegetables.Window
             
             switch (Status)
             {
-                case CellStatus.Growing:
-                case CellStatus.PlantingShoots:
+                case CellStatus.Planted:
+                case CellStatus.Green:
                     break; // No gain if plants harvested at these status.
                 case CellStatus.Immature:
                     Game.Current.AddMoney(3);
@@ -125,6 +143,7 @@ namespace GrowingVegetables.Window
                     break;
             }
 
+            progress = 0;
             Status = CellStatus.Empty;
         }
     }
@@ -137,9 +156,9 @@ namespace GrowingVegetables.Window
             {
                 case CellStatus.Empty:
                     return Color.White;
-                case CellStatus.Growing:
+                case CellStatus.Planted:
                     return Color.Black;
-                case CellStatus.PlantingShoots:
+                case CellStatus.Green:
                     return Color.Green;
                 case CellStatus.Immature:
                     return Color.Yellow;
