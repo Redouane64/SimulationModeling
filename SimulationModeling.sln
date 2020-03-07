@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight", "assignments\Flight\Flight.csproj", "{7AD8F6F5-A673-4A72-9AA5-5092D8D86380}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight2", "assignments\Flight2\Flight2.csproj", "{807E642C-127E-42B0-82DA-8F5DC9D299A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{7AD8F6F5-A673-4A72-9AA5-5092D8D86380}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD8F6F5-A673-4A72-9AA5-5092D8D86380}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD8F6F5-A673-4A72-9AA5-5092D8D86380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807E642C-127E-42B0-82DA-8F5DC9D299A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807E642C-127E-42B0-82DA-8F5DC9D299A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807E642C-127E-42B0-82DA-8F5DC9D299A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807E642C-127E-42B0-82DA-8F5DC9D299A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{3A25F402-AE48-477E-A272-2898129168B1} = {CD7ED541-40F0-4698-A54E-E930D30A5460}
 		{D5789199-EBDD-4123-A620-19368A5F6316} = {CD7ED541-40F0-4698-A54E-E930D30A5460}
 		{7AD8F6F5-A673-4A72-9AA5-5092D8D86380} = {CD7ED541-40F0-4698-A54E-E930D30A5460}
+		{807E642C-127E-42B0-82DA-8F5DC9D299A5} = {CD7ED541-40F0-4698-A54E-E930D30A5460}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {853A45B7-C588-4959-9E87-1D5036C09F63}
