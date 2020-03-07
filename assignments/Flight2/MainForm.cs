@@ -17,30 +17,21 @@ namespace Flight2
             InitializeComponent();
         }
 
-        decimal t, x, y, v0, cosa, sina, S, m, k, vx, vy;
+        private FlyingObjectSimulator sim;
 
-        const decimal g = 9.81m;
-        const decimal C = 0.15m;
-        const decimal rho = 1.29m;
-
-        const decimal dt = 0.1m;
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            t += dt;
-
-            decimal v = (decimal)Math.Sqrt((double)(vx * vx + vy * vy));
-            vx = vx - k * vx * v * dt;
-            vy = vy - (g + k * vy * v) * dt;
-            x = x + vx * dt;
-            y = y + vy * dt;
-            chart1.Series[0].Points.AddXY(x, y);
-
-            if (y <= 0)
+            if(!sim.MoveNext())
             {
                 timer1.Stop();
             }
 
-            labDistance.Text = string.Format("Distance: {0:f2}", x);
+            PointF current = sim.Current;
+
+            chart1.Series[0].Points.AddXY(current.X, current.Y);
+
+            labDistance.Text = string.Format("Distance: {0:f2}", current.X);
+
         }
 
         private void LaunchButton_Click(object sender, EventArgs e)
@@ -48,20 +39,11 @@ namespace Flight2
             if (!timer1.Enabled)
             {
                 chart1.Series[0].Points.Clear();
-                t = 0;
-                x = 0;
-                y = heightNumericUpDown.Value;
-                v0 = speedNumericUpDown.Value;
 
-                double a = (double)angleNumericUpDown.Value * Math.PI / 100;
-                cosa = (decimal)Math.Cos(a);
-                sina = (decimal)Math.Sin(a);
-                S = sizeNumericUpDown.Value;
-                m = weightNumericUpDown.Value;
-                k = 0.5m * C * rho * S / m;
-                vx = v0 * cosa;
-                vy = v0 * sina;
-                chart1.Series[0].Points.AddXY(x, y);
+                sim = new FlyingObjectSimulator(heightNumericUpDown.Value, weightNumericUpDown.Value, angleNumericUpDown.Value, speedNumericUpDown.Value, sizeNumericUpDown.Value);
+                PointF start = sim.Current;
+
+                chart1.Series[0].Points.AddXY(start.X, start.Y);
                 timer1.Start();
             }
         }
