@@ -56,7 +56,7 @@ namespace Flight2
             this.angle = angle;
             this.k = 0.5m * C * rho * size / this.mass;
 
-            double a = (double)angle * Math.PI / 100;
+            double a = (double)angle * Math.PI / 180;
             decimal cosa = (decimal)Math.Cos(a);
             decimal sina = (decimal)Math.Sin(a);
             vx = v0 * cosa;
